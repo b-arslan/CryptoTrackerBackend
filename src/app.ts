@@ -1,9 +1,11 @@
-import '@/config/env';
-import 'module-alias/register';
+import "@/config/env";
+import "module-alias/register";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route";
+import assetRoutes from "@/routes/asset.routes";
+import analysisRoutes from "@/routes/analysis.routes";
 
 dotenv.config();
 
@@ -17,5 +19,7 @@ app.get("/api/v1/health", (_req, res) => {
 });
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/assets", assetRoutes);
+app.use("/api/v1/analysis", analysisRoutes);
 
 export default app;
