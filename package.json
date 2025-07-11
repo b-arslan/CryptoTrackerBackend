@@ -2,16 +2,21 @@
     "name": "cryptotrackerbackend",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "dist/index.js",
     "scripts": {
-        "dev": "nodemon src/index.ts",
-        "start": "ts-node src/index.ts",
-        "build": "tsc"
+        "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
+        "start": "node -r module-alias/register dist/index.js",
+        "build": "rimraf dist && tsc && tsc-alias",
+        "build:watch": "tsc -w",
+        "clean": "rimraf dist"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "type": "commonjs",
+    "_moduleAliases": {
+        "@": "dist"
+    },
     "devDependencies": {
         "@eslint/js": "^9.30.1",
         "@types/bcrypt": "^5.0.2",
@@ -25,8 +30,10 @@
         "eslint": "^9.30.1",
         "globals": "^16.3.0",
         "nodemon": "^3.1.10",
-        "rimraf": "^6.0.1",
+        "rimraf": "^5.0.5",
         "ts-node": "^10.9.2",
+        "tsc-alias": "^1.8.16",
+        "tsconfig-paths": "^4.2.0",
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.36.0"
     },
@@ -36,6 +43,7 @@
         "dotenv": "^17.2.0",
         "express": "^5.1.0",
         "jsonwebtoken": "^9.0.2",
+        "module-alias": "^2.2.3",
         "mongoose": "^8.16.3"
     }
 }
